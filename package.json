@@ -1,0 +1,28 @@
+{
+  "name": "test_cypress",
+  "version": "1.0.0",
+  "description": "test_sample_ui_cypress",
+  "main": "index.js",
+  "dependencies": {
+    "cypress": "^3.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-plugin-cypress": "^2.2.1"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/cypress run",
+    "test_browser": "./node_modules/.bin/cypress open",
+    "verify": "./node_modules/.bin/eslint .",
+    "verify-fix": "npm run verify --fix"
+  },
+  "author": "Venkteshsp",
+  "license": "ISC",
+  "repository": {
+    "type": "public",
+    "url": "none"
+  },
+  "keywords": [
+    "cypress"
+  ]
+}

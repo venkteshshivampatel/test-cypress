@@ -1,0 +1,15 @@
+{
+  "email": "test@test.com",
+  "password": "ThisIs@T3st",
+  "fname": "Test",
+  "lname": "User",
+  "bdate": "11",
+  "bmonth": "10",
+  "byear": "1975",
+  "road": "Main Road",
+  "apt": "Apartment 1",
+  "bldg": "Building 24",
+  "pin": "75001",
+  "mob": "9876543210",
+  "ph": "012345"
+}
