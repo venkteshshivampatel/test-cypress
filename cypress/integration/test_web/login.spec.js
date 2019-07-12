@@ -19,7 +19,19 @@ describe('Test login and registration functionality @ marksandspicy.com', functi
   })
 
 
-  it('validation appears in inputbox', function(){
+  it('leave the fields blank and check if validation appears in inputbox on clicking submit', function(){
+
+    cy.get('[id="email"]').should('be.empty').should('have.css', 'color', 'rgb(156, 155, 155)')
+      .click()
+    cy.get('[name="passwd"]').should('be.empty').should('have.css', 'color', 'rgb(156, 155, 155)')
+      .click()
+    cy.get('[id="SubmitLogin"]').click()
+    cy.get('[id="email"]').should('have.css', 'color', 'rgb(241, 51, 64)')
+    cy.get('[id="passwd"]').should('have.css', 'color', 'rgb(241, 51, 64)')
+  })
+
+
+  it('leave the fields blank and check if validation appears in inputbox on clicking outside', function(){
 
     cy.get('[id="email"]').should('be.empty').should('have.css', 'color', 'rgb(156, 155, 155)')
       .click()
@@ -77,7 +89,7 @@ describe('Test login and registration functionality @ marksandspicy.com', functi
 
 
 
-  it.only('Go to the login page, input username. Check if validation tooltip appears', function(){
+  it('Go to the login page, input username. Check if validation tooltip appears', function(){
 
     cy.get('[id="email"]').should('be.empty').type('test').trigger('mouseover', 'center').then(() => {
       cy.get('[id="email"]').should('contain', `Please include an '@' in the email address.'test' in missing an '@'.`)
