@@ -100,7 +100,7 @@ describe('Test login and registration functionality @ marksandspicy.com', functi
 
 
   // test to check tooltip
-  it.only('Go to the login page, input username. Check if validation tooltip appears', function(){
+  it('Go to the login page, input username. Check if validation tooltip appears', function(){
 
     cy.get('[id="email"]').should('be.empty').type('test').within(() => {
       cy.get(':hover').invoke('show').should('contain', `Please include an '@' in the email address.'test' is missing an @.`)
