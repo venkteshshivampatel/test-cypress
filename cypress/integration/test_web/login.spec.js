@@ -4,6 +4,8 @@ describe('Test login and registration functionality @ marksandspicy.com', functi
     cy.visit('/login')
   })
 
+
+  // test to check validity of credentials
   it('Go to the login page, input email/password. Check if error is displayed', function(){
 
     cy.fixture('login.json').as('testUser')
@@ -19,6 +21,7 @@ describe('Test login and registration functionality @ marksandspicy.com', functi
   })
 
 
+  // test to check validation on input field upon clicking Submit
   it('leave the fields blank and check if validation appears in inputbox on clicking submit', function(){
 
     cy.get('[id="email"]').should('be.empty').should('have.css', 'color', 'rgb(156, 155, 155)')
@@ -30,7 +33,7 @@ describe('Test login and registration functionality @ marksandspicy.com', functi
     cy.get('[id="passwd"]').should('have.css', 'color', 'rgb(241, 51, 64)')
   })
 
-
+  // test to check input field validation on clicking outside
   it('leave the fields blank and check if validation appears in inputbox on clicking outside', function(){
 
     cy.get('[id="email"]').should('be.empty').should('have.css', 'color', 'rgb(156, 155, 155)')
@@ -43,6 +46,7 @@ describe('Test login and registration functionality @ marksandspicy.com', functi
   })
 
 
+  // test to check autofill functionality
   it('check autofill City on pincode input', function(){
     cy.fixture('registration.json').as('testUser')
     cy.get('@testUser').then(testUser => {
@@ -58,7 +62,8 @@ describe('Test login and registration functionality @ marksandspicy.com', functi
   })
 
 
-  it('Check if registration is success', function(){
+  // test to check registration
+  it.only('Check if registration is success', function(){
 
     cy.fixture('registration.json').as('testUser')
     cy.get('@testUser').then(testUser => {
@@ -81,14 +86,20 @@ describe('Test login and registration functionality @ marksandspicy.com', functi
         cy.get('[id="adresseDetail2"]').should('be.empty').type(this.testUser.bldg)
         cy.get('[id="codePostal"]').should('be.empty').type(this.testUser.pin)
         cy.get('[id="ville"]').should('not.be.empty')
+        cy.get('[id="lieuDit"]').should('not.be.empty')
+        cy.get('[id="telephonePortable"]').should('be.empty').type(this.testUser.mob)
+        cy.get('[id="telephoneFixe"]').should('be.empty').type(this.testUser.ph)
+        cy.get('[id="BtnCreationSubmit"]').should('have.attr', 'href')
+          .and('contain', Cypress.config().baseUrl)
+        cy.get('[id="BtnCreationSubmit"]').click().then(() => {
+              cy.location('pathname').should('not.equal', '/create-account')
+          })
       })
     })
   })
 
 
-
-
-
+  // test to check tooltip
   it('Go to the login page, input username. Check if validation tooltip appears', function(){
 
     cy.get('[id="email"]').should('be.empty').type('test').trigger('mouseover', 'center').then(() => {
