@@ -63,7 +63,7 @@ describe('Test login and registration functionality @ marksandspicy.com', functi
 
 
   // test to check registration
-  it.only('Check if registration is success', function(){
+  it('Check if registration is success', function(){
 
     cy.fixture('registration.json').as('testUser')
     cy.get('@testUser').then(testUser => {
@@ -100,10 +100,10 @@ describe('Test login and registration functionality @ marksandspicy.com', functi
 
 
   // test to check tooltip
-  it('Go to the login page, input username. Check if validation tooltip appears', function(){
+  it.only('Go to the login page, input username. Check if validation tooltip appears', function(){
 
-    cy.get('[id="email"]').should('be.empty').type('test').trigger('mouseover', 'center').then(() => {
-      cy.get('[id="email"]').should('contain', `Please include an '@' in the email address.'test' in missing an '@'.`)
+    cy.get('[id="email"]').should('be.empty').type('test').within(() => {
+      cy.get(':hover').invoke('show').should('contain', `Please include an '@' in the email address.'test' is missing an @.`)
     })
   })
 })
